@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meet the Team</title>
+    <style>
+        body {
+            background-color: #f4f4f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"], select {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        /* Carousel-style team row */
+        .team-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            scroll-behavior: smooth;
+        }
+
+        .team-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .team-slider::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 4px;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            width: 260px;
+            scroll-snap-align: center;
+            background: white;
+            border-radius: 1rem;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .card strong {
+            display: block;
+            font-weight: 600;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Meet the Team</h1>
+
+    <!-- Search and Filter -->
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by name...">
+        <select id="roleFilter">
+            <option value="">All Roles</option>
+            {% for member in team_members %}
+                <option value="{{ member.role }}">{{ member.role }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Team Cards Row -->
+    <div class="team-slider" id="teamContainer">
+        {% for member in team_members %}
+        <div class="card" data-name="{{ member.name|lower }}" data-role="{{ member.role }}">
+            {% if member.image %}
+                <img src="{{ member.image.url }}" alt="{{ member.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/150" alt="No Image">
+            {% endif %}
+            <h3>{{ member.name }}</h3>
+            <strong>{{ member.role }}</strong>
+            <p>{{ member.bio }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const roleFilter = document.getElementById('roleFilter');
+    const cards = document.querySelectorAll('.card');
+
+    function filterCards() {
+        const search = searchInput.value.toLowerCase();
+        const role = roleFilter.value;
+
+        cards.forEach(card => {
+            const name = card.dataset.name;
+            const cardRole = card.dataset.role;
+            const matchesSearch = name.includes(search);
+            const matchesRole = role === '' || cardRole === role;
+
+            card.style.display = matchesSearch && matchesRole ? 'block' : 'none';
+        });
+    }
+
+    searchInput.addEventListener('input', filterCards);
+    roleFilter.addEventListener('change', filterCards);
+</script>
+
+</body>
+</html>

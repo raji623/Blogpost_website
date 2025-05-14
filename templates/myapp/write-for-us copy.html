@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Write for Us{% endblock %}
+
+{% block content %}
+  <h2>Write for Us</h2>
+
+  <p>We welcome passionate writers, bloggers, and freelancers to contribute valuable and original content to our platform.</p>
+
+  <h3>Who Can Write?</h3>
+  <ul>
+    <li>Freelance content writers</li>
+    <li>Subject matter experts</li>
+    <li>Students or professionals with unique insights</li>
+    <li>Bloggers looking for wider exposure</li>
+  </ul>
+
+  <h3>Why Write for Us?</h3>
+  <ul>
+    <li>Get featured on a growing platform</li>
+    <li>Build your online portfolio and credibility</li>
+    <li>Share your voice with a larger audience</li>
+    <li>Include a short bio and a backlink to your blog or social media</li>
+  </ul>
+
+  <h3>Content Guidelines</h3>
+  <ul>
+    <li>Minimum 800 words, original and plagiarism-free</li>
+    <li>Use proper headings and formatting</li>
+    <li>Include 1-2 relevant images (if possible)</li>
+    <li>No promotional or affiliate links without permission</li>
+  </ul>
+
+  <h3>Topics We Accept</h3>
+  <ul>
+    <li>Technology & Innovation</li>
+    <li>Health & Wellness</li>
+    <li>Business & Entrepreneurship</li>
+    <li>Education & Career</li>
+    <li>Lifestyle, Motivation, and more...</li>
+  </ul>
+
+  <h3>📤 How to Submit Your Article</h3>
+  <p>Option 1 – Email us directly:</p>
+  <p><strong>Option 1 – Submit via Email:</strong></p>
+<p>Prefer to email us directly? Follow these steps:</p>
+<ol>
+  <li>Write your original article (minimum 800 words)</li>
+  <li>Save it in <strong>.docx</strong> format or use a <strong>Google Docs</strong> link</li>
+  <li>
+    Email it to: <strong>rajicsc14@gmail.com</strong><br>
+
+    <!-- Default email client -->
+    <!--<a href="mailto:rajicsc14@gmail.com?subject=Guest%20Post%20Submission%20–%20[Your%20Topic]&body=Hi%20Team%2C%0A%0AI%20would%20like%20to%20submit%20an%20article%20for%20consideration.%0A%0ATitle%3A%20[Your%20Article%20Title]%0AName%3A%20[Your%20Name]%0A%0APlease%20find%20the%20document%20attached.%0A%0AThanks%2C%0A[Your%20Name]"
+       class="btn btn-primary"
+       style="background-color: #007bff; color: white; padding: 10px 16px; border-radius: 6px; text-decoration: none;">
+      📩 Submit via Email
+    </a>-->
+
+    <!-- Gmail Web option -->
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajicsc14@gmail.com&su=Guest%20Post%20Submission%20–%20[Your%20Topic]&body=Hi%20Team%2C%0A%0AI%20would%20like%20to%20submit%20an%20article%20for%20consideration.%0A%0ATitle%3A%20[Your%20Article%20Title]%0AName%3A%20[Your%20Name]%0A%0APlease%20find%20the%20document%20attached.%0A%0AThanks%2C%0A[Your%20Name]"
+       class="btn btn-danger"
+       target="_blank"
+       style="margin-left: 10px; padding: 10px 16px; border-radius: 6px; color: white; text-decoration: none;">
+      ✉️ Submit via Gmail Web
+    </a>
+  </li>
+  <li>Use subject line: <strong>"Guest Post Submission – [Your Topic]"</strong></li>
+  <li>Include your <strong>name</strong>, a short <strong>bio</strong>, and any relevant <strong>links</strong></li>
+</ol>
+
+
+  <h3 style="margin-top: 40px;">Option 2 – Submit Using This Form:</h3>
+  <p>If you prefer not to use email, you can upload your article below:</p>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
+      ✅ Submit Article
+    </button>
+  </form>
+
+  <p style="margin-top: 20px;">⏳ <strong>Review Time:</strong> We’ll get back to you within <strong>3–5 business days</strong>.</p>
+
+  <p>🌟 <em>Your story matters. Let’s share it with the world!</em></p>
+
+{% endblock %}

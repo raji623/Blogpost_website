@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Write for Us{% endblock %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="display-5 fw-bold text-primary">✍️ Write for Us</h2>
+    <p class="lead text-muted">Join our contributor network and share your expertise with the world.</p>
+  </div>
+
+  <!-- Info Cards -->
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success"><i class="bi bi-people-fill"></i> Who Can Write?</h5>
+          <ul class="list-unstyled">
+            <li>• Freelance content writers</li>
+            <li>• Subject matter experts</li>
+            <li>• Students & professionals</li>
+            <li>• Bloggers seeking reach</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary"><i class="bi bi-star-fill"></i> Why Write for Us?</h5>
+          <ul class="list-unstyled">
+            <li>• Grow your audience</li>
+            <li>• Boost your online presence</li>
+            <li>• Get featured and credited</li>
+            <li>• Include a short bio & link</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guidelines -->
+  <div class="mt-5 p-4 bg-light rounded shadow-sm">
+    <h4 class="text-dark mb-3"><i class="bi bi-journal-check"></i> Content Guidelines</h4>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">✔️ Minimum 800 words, original and plagiarism-free</li>
+      <li class="list-group-item">✔️ Proper headings and formatting</li>
+      <li class="list-group-item">✔️ Include 1–2 relevant images (optional)</li>
+      <li class="list-group-item">✔️ No promotional links without approval</li>
+    </ul>
+  </div>
+
+  <!-- Topics -->
+  <div class="mt-5">
+    <h4 class="text-dark mb-3"><i class="bi bi-tags-fill"></i> Topics We Accept</h4>
+    <span class="badge bg-secondary me-2 mb-2">Technology</span>
+    <span class="badge bg-secondary me-2 mb-2">Health & Wellness</span>
+    <span class="badge bg-secondary me-2 mb-2">Business</span>
+    <span class="badge bg-secondary me-2 mb-2">Education</span>
+    <span class="badge bg-secondary me-2 mb-2">Lifestyle</span>
+    <span class="badge bg-secondary me-2 mb-2">Motivation</span>
+  </div>
+
+  <!-- Email Option -->
+  <div class="mt-5 p-4 bg-white rounded shadow">
+    <h4 class="text-danger"><i class="bi bi-envelope-heart"></i> Option 1 – Submit via Email</h4>
+    <ol class="ps-3">
+      <li>Write your article (min. 800 words)</li>
+      <li>Save as <strong>.docx</strong> or share a <strong>Google Docs</strong> link</li>
+      <li>Email to: <strong>rajicsc14@gmail.com</strong></li>
+      <li>Use subject: <code>Guest Post Submission – [Your Topic]</code></li>
+      <li>Include your name, short bio, and any links</li>
+    </ol>
+
+    <div class="mt-3">
+      
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajicsc14@gmail.com&su=Guest%20Post%20Submission%20–%20[Your%20Topic]"
+         class="btn btn-danger" target="_blank">
+        ✉️ Gmail Web
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rajicsc14@gmail.com&su=Guest%20Post%20Submission%20–%20[Your%20Topic]&body=Hi%20Team%2C%0A%0AI%20would%20like%20to%20submit%20an%20article%20for%20consideration.%0A%0ATitle%3A%20[Your%20Article%20Title]%0AName%3A%20[Your%20Name]%0A%0APlease%20find%20the%20document%20attached.%0A%0AThanks%2C%0A[Your%20Name]"
+       class="btn btn-danger"
+       target="_blank"
+       style="margin-left: 10px; padding: 10px 16px; border-radius: 6px; color: white; text-decoration: none;">
+      ✉️ Submit via Gmail Web
+    </a>
+    </div>
+  </div>
+
+  <!-- Form Option -->
+  <div class="mt-5 p-4 bg-white rounded shadow">
+    <h4 class="text-success"><i class="bi bi-upload"></i> Option 2 – Submit Using This Form</h4>
+    <p>Prefer not to email? Upload your article directly:</p>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-success">
+        ✅ Submit Article
+      </button>
+    </form>
+  </div>
+
+  <div class="alert alert-info mt-4" role="alert">
+    ⏳ <strong>Review Time:</strong> We’ll get back to you within <strong>3–5 business days</strong>.
+  </div>
+
+  <p class="text-center mt-4 fs-5"><em>🌟 Your voice matters. Let’s share it with the world!</em></p>
+</div>
+{% endblock %}

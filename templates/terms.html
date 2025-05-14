@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg rounded-4 p-5 mx-auto" style="max-width: 850px; background-color: #ffffffee;">
+    <h1 class="text-center mb-4 text-danger fw-bold">Terms of Use</h1>
+    <p class="text-muted">Welcome to our website. By accessing or using this site, you agree to comply with and be bound by the following Terms of Use. Please read them carefully.</p>
+
+    <hr>
+
+    <h4 class="mt-4 text-primary">1. Use of Website Content</h4>
+    <p>All content provided on this site is for informational purposes only. Reproduction, distribution, or modification of any material without prior written permission is strictly prohibited.</p>
+
+    <h4 class="mt-4 text-primary">2. User Conduct</h4>
+    <p>Users must not post or transmit any content that is unlawful, harmful, threatening, abusive, defamatory, vulgar, or otherwise objectionable. We reserve the right to block access to users violating these terms.</p>
+
+    <h4 class="mt-4 text-primary">3. Advertising & Sponsored Content</h4>
+    <p>Some content may include paid advertisements or sponsored posts. Such content will always be clearly labeled. We are not responsible for the accuracy or reliability of third-party products or services advertised on our site.</p>
+
+    <h4 class="mt-4 text-primary">4. Privacy Protection</h4>
+    <p>We are committed to protecting your privacy. We do not sell or share your personal information without consent. Please review our 
+      <a href="{% url 'privacy' %}" class="text-decoration-underline">Privacy Policy</a> for more details.</p>
+
+    <h4 class="mt-4 text-primary">5. Changes to Terms</h4>
+    <p>We reserve the right to revise these Terms of Use at any time without prior notice. Continued use of the website following any updates indicates your acceptance of the revised terms.</p>
+
+    <hr>
+    <p class="text-end text-secondary"><strong>Last Updated:</strong> May 10, 2025</p>
+  </div>
+</div>
+{% endblock %}

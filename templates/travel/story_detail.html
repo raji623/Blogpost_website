@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .story-header {
+    background: url("{% static 'assets/images/story-bg.jpg' %}") center/cover no-repeat;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    padding: 100px 30px;
+    text-align: center;
+    border-radius: 12px;
+  }
+
+  .story-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .story-body {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fcf8f3;
+    font-family: 'Georgia', serif;
+    padding: 3rem;
+    margin-top: -40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    position: relative;
+  }
+
+  .chapter {
+    margin-bottom: 3rem;
+  }
+
+  .chapter h3 {
+    font-size: 1.5rem;
+    color: #b35c1e;
+    margin-bottom: 1rem;
+  }
+
+  .chapter p {
+    color: #444;
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  .btn-group {
+    text-align: right;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    margin-left: 0.5rem;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .btn-download {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+
+  .btn-download:hover {
+    background-color: #45a049;
+  }
+
+  .btn-print {
+    background-color: #2196F3;
+    color: #fff;
+  }
+
+  .btn-print:hover {
+    background-color: #1976D2;
+  }
+
+  @media (max-width: 768px) {
+    .story-header h1 {
+      font-size: 2rem;
+    }
+    .story-body {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<!-- Story Header -->
+<div class="story-header">
+  <h1>{{ story.title }}</h1>
+  <p class="lead mt-3">By {{ story.author_name }}</p>
+</div>
+
+<!-- Story Body -->
+<div class="story-body" id="story-content">
+  <div class="chapter">
+    <h3>📦 Planning Ki Hungama</h3>
+    <p>{{ story.chapter_0|linebreaks }}</p>
+  </div>
+  <div class="chapter">
+    <h3>🚆 Safar Ka Shuruaat</h3>
+    <p>{{ story.chapter_1|linebreaks }}</p>
+  </div>
+  <div class="chapter">
+    <h3>🏞️ Pahaadon Ki Goanj</h3>
+    <p>{{ story.chapter_2|linebreaks }}</p>
+  </div>
+  <div class="chapter">
+    <h3>🎢 Adventure Mode ON</h3>
+    <p>{{ story.chapter_3|linebreaks }}</p>
+  </div>
+  <div class="chapter">
+    <h3>🎉 Yaadein Jo Hamesha Saath Rahengi</h3>
+    <p>{{ story.chapter_4|linebreaks }}</p>
+  </div>
+  {% if story.chapter_5 %}
+  <div class="chapter">
+    <h3>📸 Photo Session Aur Reels Ki Duniya</h3>
+    <p>{{ story.chapter_5|linebreaks }}</p>
+  </div>
+  {% endif %}
+  {% if story.chapter_6 %}
+  <div class="chapter">
+    <h3>🍽️ Khaane Peene Ka Connection</h3>
+    <p>{{ story.chapter_6|linebreaks }}</p>
+  </div>
+  {% endif %}
+  {% if story.chapter_7 %}
+  <div class="chapter">
+    <h3>🛍️ Souvenir Shopping & Tofe Wale Moments</h3>
+    <p>{{ story.chapter_7|linebreaks }}</p>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Action Buttons -->
+<div class="btn-group" style="max-width: 900px; margin: 0 auto; margin-top: 20px;">
+  <button class="btn btn-download" onclick="downloadStory()">Download PDF</button>
+  <button class="btn btn-print" onclick="window.print()">Print Story</button>
+</div>
+
+<!-- JS PDF Download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  function downloadStory() {
+    const element = document.getElementById('story-content');
+    const opt = {
+      margin: 0.5,
+      filename: '{{ story.title|slugify }}.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  }
+</script>
+{% endblock %}
