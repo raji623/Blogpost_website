@@ -373,7 +373,59 @@ def careers_view(request):
     return render(request, 'careers.html', {'jobs': jobs, 'form': form})
 
 
+#search functionality
+#
+
+    query = request.GET.get('q')
+    category_name = request.GET.get('category')
+    posts = Post.objects.all()
+
+    if query:
+        posts = posts.filter(
+            Q(postname__icontains=query) |
+            Q(content__icontains=query) |
+            Q(user__username__icontains=query)
+        )
+
+    if category_name:
+        posts = posts.filter(category=category_name)
+
+    categories = Category.objects.all()
+    return render(request, 'post_list.html', {
+        'posts': posts,
+        'query': query,
+        'categories': categories,
+        'media_url': settings.MEDIA_URL,
+        'request': request,  # for template filters
+    })
 
 
+from django.db.models import Q
+from .models import Post, Category
+from django.contrib.auth.models import User
+
+def post_list(request):
+    query = request.GET.get('q', '')
+    filter_by = request.GET.get('filter_by', 'postname')
+    posts = Post.objects.all()
+    
+    if query:
+        if filter_by == 'postname':
+            posts = posts.filter(postname__icontains=query)
+        elif filter_by == 'category':
+            posts = posts.filter(category__icontains=query)
+
+        elif filter_by == 'author':
+            posts = posts.filter(user__username__icontains=query)
+
+    categories = Category.objects.all()
+
+    return render(request, 'post_list.html', {
+        'posts': posts,
+        'query': query,
+        'categories': categories,
+        'media_url': settings.MEDIA_URL,
+        'request': request,  # for template filters
+    })
 
 

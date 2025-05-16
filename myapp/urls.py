@@ -31,6 +31,7 @@ urlpatterns = [
     #path('story/<int:story_id>/download/', views.download_story_pdf, name='download_story_pdf'),
     path('thank-you/', views.thank_you, name='thank_you'),
     path('write-for-us/<str:email>/', views.write_for_us, name='write-for-us-email'),
+    path('search/', views.post_list, name='post_list'),
     
 
     
